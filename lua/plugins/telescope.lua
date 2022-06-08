@@ -6,6 +6,18 @@ if not present then
 end
 
 local options = {
+
+  extensions = {
+    file_browser = { 
+      hijack_netrw = true, 
+      theme = "ivy", 
+     }, 
+    fzy_native = { 
+      override_generic_sorter = true, 
+      overide_file_sorter = true, 
+    },
+  },
+  
    defaults = {
       vimgrep_arguments = {
          "rg",
@@ -56,7 +68,7 @@ local options = {
       },
    },
 
-   extensions_list = { "themes", "terms" },
+   extensions_list = { "themes", "terms" , "file_browser", "fzy_native"},
 }
 
 -- load extensions
@@ -65,3 +77,8 @@ pcall(function()
       telescope.load_extension(ext)
    end
 end)
+
+telescope.setup(options)
+
+--telescope.load_extension "file_browser"
+--telescope.load_extension "fzy_native"

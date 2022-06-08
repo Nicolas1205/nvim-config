@@ -9,18 +9,20 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 let s:shortmess_save = &shortmess
 set shortmess=aoO
-badd +0 .gitignore
+badd +13 lua/plugins/telescope.lua
+badd +1 lua/
+badd +1 init.lua
 argglobal
 %argdel
-$argadd .gitignore
-edit .gitignore
+edit init.lua
 argglobal
-let s:l = 2 - ((1 * winheight(0) + 14) / 28)
+balt lua/
+let s:l = 9 - ((8 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 05|
+keepjumps 9
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

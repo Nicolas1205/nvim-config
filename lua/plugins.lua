@@ -88,6 +88,13 @@ return packer.startup(function()
     end,
   }
 
+  use { 
+    "nvim-telescope/telescope-file-browser.nvim"
+  }
+
+  use {
+    "nvim-telescope/telescope-fzy-native.nvim"
+  }
   
 end) 
 

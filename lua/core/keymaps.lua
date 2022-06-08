@@ -223,6 +223,13 @@ map(
   "Diagnostics into location list"
 )
 
+-- === TELESCOPE === --
+map(
+  "n", 
+  "<leader>.", 
+  ":Telescope file_browser<CR>", 
+  {noremap = true}
+)
 
 
 -- MISC
