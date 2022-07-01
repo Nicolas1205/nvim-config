@@ -1,4 +1,3 @@
-  
 local present, telescope = pcall(require, "telescope")
 
 if not present then
@@ -7,16 +6,7 @@ end
 
 local options = {
 
-  extensions = {
-    file_browser = { 
-      hijack_netrw = true, 
-      theme = "ivy", 
-     }, 
-    fzy_native = { 
-      override_generic_sorter = true, 
-      overide_file_sorter = true, 
-    },
-  },
+  
   
    defaults = {
       vimgrep_arguments = {
@@ -68,17 +58,28 @@ local options = {
       },
    },
 
-   extensions_list = { "themes", "terms" , "file_browser", "fzy_native"},
+   --extensions_list = { "themes", "terms" , "file_browser", "fzy_native"},
+   extensions = {
+    file_browser = { 
+      hijack_netrw = true, 
+      theme = "ivy", 
+     }, 
+    fzy_native = { 
+      override_generic_sorter = true, 
+      overide_file_sorter = true, 
+    },
+  },
 }
 
+
 -- load extensions
-pcall(function()
-   for _, ext in ipairs(options.extensions_list) do
-      telescope.load_extension(ext)
-   end
-end)
+--pcall(function()
+--   for _, ext in ipairs(options.extensions_list) do
+--      telescope.load_extension(ext)
+--   end
+--end)
+
+telescope.load_extension "file_browser"
+telescope.load_extension "fzy_native"
 
 telescope.setup(options)
-
---telescope.load_extension "file_browser"
---telescope.load_extension "fzy_native"

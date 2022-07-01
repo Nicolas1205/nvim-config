@@ -20,12 +20,10 @@ local border = {
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  -- border = border, 
   border = 'rounded',
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { 
-  --border = border,
   border = 'rounded',
 })
 
@@ -52,8 +50,11 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.hover()]])
 --vim.cmd([[autocmd! CursorHold, CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
+capabilities.textDocument.foldingRange = { 
+  dynamicRegistration = false, 
+  lineFoldingOnly = true
+}
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -69,6 +70,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   },
 }
+
+capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 
 local on_attach = function(client, bufnr)
@@ -107,7 +110,7 @@ local on_attach = function(client, bufnr)
 end
 
 
-local servers = {'pyright', 'clangd', 'hls'}
+local servers = {'pyright', 'clangd', 'hls' , 'rls'}
 
 for _, lsp in ipairs(servers) do 
   lspconfig[lsp].setup {
@@ -119,3 +122,4 @@ end
 require'lspconfig'.elixirls.setup {
   cmd = {"elixir-ls"};
 }
+require'lspconfig'.rls.setup{}

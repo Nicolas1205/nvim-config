@@ -3,6 +3,10 @@ vim.cmd [[packadd packer.nvim]]
 local packer = require("packer")
 
 return packer.startup(function()  
+  
+  use { 
+    'ibhagwan/fzf-lua'
+  }
 
   use 'wbthomason/packer.nvim' 
   
@@ -49,6 +53,9 @@ return packer.startup(function()
   use { 
     'nvim-telescope/telescope.nvim', 
     cmd = "Telescope", 
+    config = function() 
+      require "plugins.telescope"
+    end
   }
 
   use { 

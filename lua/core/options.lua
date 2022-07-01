@@ -3,6 +3,7 @@ local g = vim.g
 
 
 
+
 opt.confirm = true
 opt.title = true
 opt.clipboard = "unnamedplus"

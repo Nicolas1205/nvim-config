@@ -224,13 +224,12 @@ map(
 )
 
 -- === TELESCOPE === --
+
 map(
   "n", 
   "<leader>.", 
-  ":Telescope file_browser<CR>", 
-  {noremap = true}
+  ":Telescope file_browser<CR>"
 )
-
 
 -- MISC
 map('n', '<leader>r', ':so %<CR>')
